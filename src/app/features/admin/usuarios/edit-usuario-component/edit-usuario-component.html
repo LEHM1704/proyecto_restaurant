@@ -1,0 +1,27 @@
+<div *ngIf="usuario; else loading">
+
+  <h2 class="text-2xl font-bold mb-4">
+    Editar Usuario: {{ usuario.name }}
+  </h2>
+
+  <div class="bg-white p-4 rounded shadow-md">
+    <p><strong>ID:</strong> {{ usuario.id }}</p>
+    <p><strong>Nombre:</strong> {{ usuario.name }}</p>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+    <p><strong>Rol:</strong> {{ usuario.rol }}</p>
+  </div>
+
+  <div class="mt-4">
+    <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
+      Guardar Cambios
+    </button>
+    <button class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 ml-2">
+      Cancelar
+    </button>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <p>Cargando detalles del usuario...</p>
+</ng-template>

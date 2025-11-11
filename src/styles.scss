@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tus otros estilos globales (si los tienes) pueden ir después.
+  Por ejemplo:
+*/
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
