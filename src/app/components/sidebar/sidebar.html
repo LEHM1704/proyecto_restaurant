@@ -1,12 +1,10 @@
 <div class="flex">
 
-  <!-- SIDEBAR -->
   <aside 
     class="h-screen bg-gray-900 text-white transition-all duration-300"
     [class.w-64]="isOpen()" 
     [class.w-20]="!isOpen()"
   >
-    <!-- LOGO -->
     <div class="flex items-center justify-between p-4">
       <span class="text-xl font-bold" *ngIf="isOpen()">Mi App</span>
       <button (click)="toggleSidebar()" class="text-gray-400 hover:text-white">
@@ -14,29 +12,59 @@
       </button>
     </div>
 
-    <!-- MENU -->
     <nav class="mt-5 space-y-2">
-      <a href="#"
-        class="flex items-center gap-3 px-4 py-3 hover:bg-gray-700 rounded-lg transition">
+      <a 
+        routerLink="/admin/"
+        [routerLinkActive]="'is-active'"  
+        #rlaInicio="routerLinkActive"
+        [routerLinkActiveOptions]="{exact: true}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition"
+        [ngClass]="{
+          'bg-blue-600 text-white font-medium': rlaInicio.isActive,
+          'text-gray-300 hover:bg-gray-700': !rlaInicio.isActive
+        }"
+      >
         🏠 <span *ngIf="isOpen()">Inicio</span>
       </a>
 
-      <a routerLink="/admin/usuarios"
-        class="flex items-center gap-3 px-4 py-3 hover:bg-gray-700 rounded-lg transition">
+      <a 
+        routerLink="/admin/usuarios"
+        [routerLinkActive]="'is-active'"
+        #rlaUsuarios="routerLinkActive"
+        class="flex items-center gap-3 px-4 py-3 rounded-lg transition"
+        [ngClass]="{
+          'bg-blue-600 text-white font-medium': rlaUsuarios.isActive,
+          'text-gray-300 hover:bg-gray-700': !rlaUsuarios.isActive
+        }"
+      >
         👤 <span *ngIf="isOpen()">Usuarios</span>
       </a>
 
-      <a routerLink="/admin/config"
-        class="flex items-center gap-3 px-4 py-3 hover:bg-gray-700 rounded-lg transition">
+      <a 
+        routerLink="/admin/config"
+        [routerLinkActive]="'is-active'"
+        #rlaConfig="routerLinkActive"
+        class="flex items-center gap-3 px-4 py-3 rounded-lg transition"
+        [ngClass]="{
+          'bg-blue-600 text-white font-medium': rlaConfig.isActive,
+          'text-gray-300 hover:bg-gray-700': !rlaConfig.isActive
+        }"
+      >
         ⚙️ <span *ngIf="isOpen()">Configuración</span>
       </a>
-       <a routerLink="/admin/productos"
-        class="flex items-center gap-3 px-4 py-3 hover:bg-gray-700 rounded-lg transition">
+      
+      <a 
+        routerLink="/admin/productos"
+        [routerLinkActive]="'is-active'"
+        #rlaProductos="routerLinkActive"
+        class="flex items-center gap-3 px-4 py-3 rounded-lg transition"
+        [ngClass]="{
+          'bg-blue-600 text-white font-medium': rlaProductos.isActive,
+          'text-gray-300 hover:bg-gray-700': !rlaProductos.isActive
+        }"
+      >
         ⚙️ <span *ngIf="isOpen()">Productos</span>
       </a>
     </nav>
   </aside>
 
- 
-  
 </div>

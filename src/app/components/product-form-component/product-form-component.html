@@ -1,0 +1,92 @@
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md mt-10">
+  
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">
+    {{ isEditMode ? 'Editar Producto' : 'Crear Nuevo Producto' }}
+  </h2>
+
+  <form #productoForm="ngForm" (ngSubmit)="onSubmit(productoForm)" novalidate>
+
+    <div class="mb-4">
+      <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre del Producto</label>
+      <input type="text" id="nombre" 
+             [(ngModel)]="newProducto.nombre"
+             name="nombre" 
+             required
+             
+             pattern="^[a-zA-Z0-9\sñáéíóúÁÉÍÓÚ]+$"
+
+             #nombre="ngModel"
+             class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm"
+             [class.border-red-500]="nombre.invalid && (nombre.touched || nombre.dirty)">
+      
+      @if (nombre.invalid && (nombre.touched || nombre.dirty)) {
+        <div class="text-red-600 text-sm mt-1">
+          
+          @if (nombre.errors?.['required']) {
+            El nombre es obligatorio.
+          }
+          @if (nombre.errors?.['pattern']) {
+            El nombre solo puede contener letras, números y espacios.
+          }
+        </div>
+      }
+    </div>
+
+    <div class="mb-4">
+      <label for="precio" class="block text-sm font-medium text-gray-700">Precio</label>
+      <input type="number" id="precio"
+             [(ngModel)]="newProducto.precio"
+             name="precio"
+             required
+             min="0.01"
+             #precio="ngModel"
+             class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm"
+             [class.border-red-500]="precio.invalid && (precio.touched || precio.dirty)">
+
+      @if (precio.invalid && (precio.touched || precio.dirty)) {
+        <div class="text-red-600 text-sm mt-1">
+          @if (precio.errors?.['required']) {
+            El precio es obligatorio.
+          }
+          @if (precio.errors?.['min']) {
+            El precio debe ser un número positivo.
+          }
+        </div>
+      }
+    </div>
+
+    <div class="mb-4">
+      <label for="categoria" class="block text-sm font-medium text-gray-700">Categoría</label>
+      <input type="text" id="categoria"
+             [(ngModel)]="newProducto.categoria"
+             name="categoria"
+             required
+             #categoria="ngModel"
+             class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm"
+             [class.border-red-500]="categoria.invalid && (categoria.touched || categoria.dirty)">
+
+      @if (categoria.invalid && (categoria.touched || categoria.dirty)) {
+        <div class="text-red-600 text-sm mt-1">La categoría es obligatoria.</div>
+      }
+    </div>
+
+    @if (errorMessage) {
+      <div class="my-4 p-4 bg-red-100 text-red-800 border border-red-200 rounded-lg shadow-sm" role="alert">
+        <strong>Error:</strong> {{ errorMessage }}
+      </div>
+    }
+
+    <div class="mt-8 flex justify-end gap-4">
+      <button type="button" (click)="cancelar()"
+              class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg">
+        Cancelar
+      </button>
+
+      <button type="submit" [disabled]="productoForm.invalid"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg
+                     disabled:opacity-50 disabled:cursor-not-allowed">
+        {{ isEditMode ? 'Actualizar Producto' : 'Guardar Producto' }}
+      </button>
+    </div>
+  </form>
+</div>

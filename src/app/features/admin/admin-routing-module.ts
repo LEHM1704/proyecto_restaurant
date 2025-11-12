@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayout } from './admin-layout/admin-layout';
+import { Config } from './config/config';
 
 const routes: Routes = [
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: 'config',
-        loadChildren: () => import('./config/config-module').then((m) => m.ConfigModule),
+        component: Config,
       },
     ],
   },
